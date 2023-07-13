@@ -4,10 +4,11 @@ function Eraser() {
     this.name = "eraser";
 
     this.draw = function(){
-		if(mouseIsPressed){
+        if(mouseIsPressed){
 			if (previousMouseX == -1){
 				previousMouseX = mouseX;
 				previousMouseY = mouseY;
+                updatePixels();
 			}
 			else{
                 fill(255);
@@ -16,7 +17,8 @@ function Eraser() {
                 var nx = (mouseX-previousMouseX)/n;
                 var ny = (mouseY-previousMouseY)/n;
 				for(var i = 0; i < n; i++){
-                    ellipse(previousMouseX,previousMouseY,this.getWeigth())
+                    ellipse(previousMouseX,previousMouseY,this.getSize());
+                    loadPixels();
                     previousMouseX+=nx;
                     previousMouseY+=ny;
                 }
@@ -27,6 +29,10 @@ function Eraser() {
 		else{
 			previousMouseX = -1;
 			previousMouseY = -1;
+            updatePixels();
+            stroke(50);
+            strokeWeight(1);
+            ellipse(mouseX,mouseY,this.getSize);   
 		}
 	}
 
@@ -34,13 +40,15 @@ function Eraser() {
         fill(colourP.selectedColour);
         stroke(colourP.selectedColour);
         select(".toolOptions").html("");
+        stroke(lineWeight.getWeight());
+        updatePixels();
     }
 
     this.populateOptions = function() {
         select(".toolOptions").html("<label for='slider'>Eraser Size:</label><input type='range' min='10' max='100' value='50' id='slider'></input>");
 	}
 
-    this.getWeigth = function() {
+    this.getSize = function() {
         return select("#slider").value();
     }
 }

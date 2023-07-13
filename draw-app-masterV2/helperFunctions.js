@@ -17,4 +17,14 @@ function HelperFunctions() {
 	select("#saveImageButton").mouseClicked(function() {
 		saveCanvas("myPicture", "jpg");
 	});
+
+	this.mouseIsPressedCanvas = mouseIsPressed;
+
+	c.mouseClicked(function(){
+		this.mouseIsPressedCanvas = mouseIsPressed;
+	});
+
+	c.mouseReleased(function(){
+		this.mouseIsPressedCanvas = mouseIsPressed;
+	});
 }

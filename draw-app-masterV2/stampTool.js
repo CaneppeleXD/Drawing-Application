@@ -10,11 +10,7 @@ function StampTool(){
 
     var drawing = false;
 
-    var startMouseX = -1;
-	var startMouseY = -1;
-    var previousMouseX = 0;
-    var previousMouseY = 0;
-    var mouseWasPressed = false;
+
     this.draw = function(){
         // if(mouseIsPressed){
         //     if(!mouseWasPressed){
@@ -27,29 +23,19 @@ function StampTool(){
         // }
 
         if(mouseIsPressed){
-			if(startMouseX == -1){
-				startMouseX = mouseX;
-				startMouseY = mouseY;
+			if(!drawing){
 				drawing = true;
 				loadPixels();
 			}
 
 			else{
 				updatePixels();
-				image(stampImage,startMouseX-stampImage.width/2,startMouseY-stampImage.height/2);
-                if (previousMouseX!=mouseX && previousMouseY!=mouseY){
-                stampImage.width+=mouseX-startMouseY;
-                stampImage.height+=mouseY-startMouseY;
-                }
-                previousMouseX = mouseX;
-                previousMouseY = mouseY;
+				image(stampImage,mouseX-stampImage.width/2,mouseY-stampImage.height/2);
 			}
         }
 		else if(drawing){
 			loadPixels();
 			drawing = false;
-			startMouseX = -1;
-			startMouseY = -1;
 		}
     }
 
