@@ -3,7 +3,7 @@
 var toolbox = null;
 var colourP = null;
 var helpers = null;
-
+var lineWeight = null;
 
 function setup() {
 
@@ -25,7 +25,11 @@ function setup() {
 	toolbox.addTool(new SprayCanTool());
 	toolbox.addTool(new mirrorDrawTool());
 	toolbox.addTool(new Eraser());
+	toolbox.addTool(new StampTool());
 	background(255);
+
+	lineWeight = new LineWeigth();
+	lineWeight.loadSlider();
 
 }
 

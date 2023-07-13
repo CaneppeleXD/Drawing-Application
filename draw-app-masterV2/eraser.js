@@ -3,11 +3,6 @@ function Eraser() {
     this.icon = "assets/eraser.jpg";
     this.name = "eraser";
 
-    this.unselectTool = function(){
-        fill(colourP.selectedColour);
-        stroke(colourP.selectedColour);
-    }
-
     this.draw = function(){
 		if(mouseIsPressed){
 			if (previousMouseX == -1){
@@ -17,11 +12,11 @@ function Eraser() {
 			else{
                 fill(255);
                 noStroke();
-                var n = 5;
+                var n = 10;
                 var nx = (mouseX-previousMouseX)/n;
                 var ny = (mouseY-previousMouseY)/n;
-				while (Math.abs(previousMouseX-mouseX)>nx){
-                    ellipse(previousMouseX,previousMouseY,50)
+				for(var i = 0; i < n; i++){
+                    ellipse(previousMouseX,previousMouseY,this.getWeigth())
                     previousMouseX+=nx;
                     previousMouseY+=ny;
                 }
@@ -34,4 +29,18 @@ function Eraser() {
 			previousMouseY = -1;
 		}
 	}
+
+    this.unselectTool = function(){
+        fill(colourP.selectedColour);
+        stroke(colourP.selectedColour);
+        select(".toolOptions").html("");
+    }
+
+    this.populateOptions = function() {
+        select(".toolOptions").html("<label for='slider'>Eraser Size:</label><input type='range' min='10' max='100' value='50' id='slider'></input>");
+	}
+
+    this.getWeigth = function() {
+        return select("#slider").value();
+    }
 }
