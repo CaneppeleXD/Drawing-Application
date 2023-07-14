@@ -7,9 +7,7 @@ function Eraser() {
         if(mouseIsPressed){
 			if (previousMouseX == -1){
 				previousMouseX = mouseX;
-				previousMouseY = mouseY;
-                updatePixels();
-			}
+				previousMouseY = mouseY;			}
 			else{
                 fill(255);
                 noStroke();
@@ -18,7 +16,6 @@ function Eraser() {
                 var ny = (mouseY-previousMouseY)/n;
 				for(var i = 0; i < n; i++){
                     ellipse(previousMouseX,previousMouseY,this.getSize());
-                    loadPixels();
                     previousMouseX+=nx;
                     previousMouseY+=ny;
                 }
@@ -28,11 +25,7 @@ function Eraser() {
 		}
 		else{
 			previousMouseX = -1;
-			previousMouseY = -1;
-            updatePixels();
-            stroke(50);
-            strokeWeight(1);
-            ellipse(mouseX,mouseY,this.getSize);   
+			previousMouseY = -1;  
 		}
 	}
 
@@ -40,8 +33,6 @@ function Eraser() {
         fill(colourP.selectedColour);
         stroke(colourP.selectedColour);
         select(".toolOptions").html("");
-        stroke(lineWeight.getWeight());
-        updatePixels();
     }
 
     this.populateOptions = function() {

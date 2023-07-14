@@ -20,6 +20,12 @@ function HelperFunctions() {
 
 	this.mouseIsPressedCanvas = mouseIsPressed;
 
+	this.insideCanvas = mouseX > 0 && mouseY > 0 && mouseX < c.width && c.height;
+
+	this.update = function(){
+		this.insideCanvas = mouseX > 0 && mouseY > 0 && mouseX < c.width && c.height;
+	}
+
 	c.mouseClicked(function(){
 		this.mouseIsPressedCanvas = mouseIsPressed;
 	});

@@ -44,4 +44,6 @@ function draw() {
 	} else {
 		alert("it doesn't look like your tool has a draw method!");
 	}
+	helpers.update();
+	console.log(helpers.insideCanvas);
 }
