@@ -23,7 +23,7 @@ function HelperFunctions() {
 	this.insideCanvas = mouseX > 0 && mouseY > 0 && mouseX < c.width && c.height;
 
 	this.update = function(){
-		this.insideCanvas = mouseX > 0 && mouseY > 0 && mouseX < c.width && c.height;
+		this.insideCanvas = mouseX > 0 && mouseY > 0 && mouseX < c.width && mouseY < c.height;
 	}
 
 	c.mouseClicked(function(){
