@@ -1,14 +1,17 @@
 function LineWeigth(){
     this.text = "Line Weight:";
+
+    var _self = this;
+
     this.loadSlider = function(){
         select(".lineWeight").html("<label for='weight'>"+this.text+"</label><input type='range' min='1' max='15' value='1' id='weight'></input>");
         select("#weight").touchMoved(function() {
-			strokeWeight(getWeight());
+			strokeWeight(_self.getWeight());
 		});
-        strokeWeight(getWeight());
+        strokeWeight(this.getWeight());
     }
 
-    var getWeight = function(){
+    this.getWeight = function(){
 		var slider = select("#weight");
         return slider.value();
     }
