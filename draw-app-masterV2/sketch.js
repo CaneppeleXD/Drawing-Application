@@ -27,6 +27,7 @@ function setup() {
 	toolbox.addTool(new mirrorDrawTool());
 	toolbox.addTool(new Eraser());
 	toolbox.addTool(new StampTool());
+	toolbox.addTool(new ColorPick());
 	background(255);
 
 	lineWeight = new LineWeigth();
@@ -45,4 +46,5 @@ function draw() {
 		alert("it doesn't look like your tool has a draw method!");
 	}
 	helpers.update();
+	// console.log(mouseX+" | "+mouseY);
 }
