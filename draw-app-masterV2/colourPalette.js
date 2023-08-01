@@ -12,6 +12,11 @@ function ColourPalette() {
 
 	var colourClick = function() {
 		//remove the old border
+		if (toolbox.selectedTool.name == "ColorPick"){
+			var colorpick = select("#colorPickCurrentColor");
+			colorpick.style("border", "0");
+		}
+		
 		var current = select("#" + self.selectedColour + "Swatch");
 		current.style("border", "0");
 
