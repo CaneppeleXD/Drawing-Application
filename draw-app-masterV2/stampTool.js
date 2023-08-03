@@ -217,7 +217,8 @@ function StampTool() {
     }
 
     function loadImageCustom(path){
-        stampImage = loadImage(path);
+        waiting = true;
+        stampImage = loadImage(path,function(){waiting = false;});
         imageWidth = 0;
         imageHeight = 0;
     }

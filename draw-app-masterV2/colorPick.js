@@ -32,30 +32,15 @@ function ColorPick() {
     }
 
     this.populateOptions = function () {
-        select(".toolOptions").html("<span>Current Color Picked</span>");
-        var currentColor = createDiv()
-        currentColor.parent("toolOptions");
-        currentColor.class('colourSwatches');
-        currentColor.id("colorPickCurrentColor");
-        currentColor.mouseClicked(mouseClick);
-        changeCurrentColorViewer();
+        
     }
 
     function changeCurrentColorViewer() {
-        select("#colorPickCurrentColor").style("background-color", "rgb(" + currentColor.join(",") + ")");
+        select("#displaySelectedColour").style("background-color", "rgb(" + currentColor.join(",") + ")");
     }
 
     this.unselectTool = function () {
-        select(".toolOptions").html("");
+
     }
 
-    function mouseClick(){
-        var current = select("#" + colourP.selectedColour + "Swatch");
-		current.style("border", "0");
-		fill(currentColor);
-		stroke(currentColor);
-		this.style("border", "2px solid blue");
-        // uma boa ideia seria mudar a maneira como as cores sao selecionadas, ao inves de mudar a borda do quadrada da cor atual, mostrar um quadrado separado com a cor atual, tipo
-        // como é mostrado a cor pega pelo color pick, dessa forma ficaria melhor para usar
-    }
 }

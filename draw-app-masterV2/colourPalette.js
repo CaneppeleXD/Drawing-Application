@@ -12,10 +12,6 @@ function ColourPalette() {
 
 	var colourClick = function() {
 		//remove the old border
-		if (toolbox.selectedTool.name == "ColorPick"){
-			var colorpick = select("#colorPickCurrentColor");
-			colorpick.style("border", "0");
-		}
 		
 		var current = select("#" + self.selectedColour + "Swatch");
 		current.style("border", "0");
@@ -29,7 +25,7 @@ function ColourPalette() {
 		stroke(c);
 
 		//add a new border to the selected colour
-		this.style("border", "2px solid blue");
+		select("#displaySelectedColour").style("background-color", c)
 	}
 
 	//load in the colours
@@ -54,7 +50,14 @@ function ColourPalette() {
 			colourSwatch.mouseClicked(colourClick)
 		}
 
-		select(".colourSwatches").style("border", "2px solid blue");
+
+		select(".currentColour").html("<span>Selected Colour:</span>");
+		var currentColour = createDiv();
+		currentColour.style("background-color", "black");
+		currentColour.id("displaySelectedColour");
+		currentColour.class("colourSwatches");
+		currentColour.style("border", "2px solid blue");
+		select(".currentColour").child(currentColour);
 	};
 	//call the loadColours function now it is declared
 	this.loadColours();

@@ -6,6 +6,7 @@ html, body {
 #sidebar {
 	grid-area: sidebar;
 	overflow-y: scroll;
+	width: 70px;
 }
 
 #content {
@@ -53,16 +54,21 @@ html, body {
 	margin: 5px;
 }
 
+.currentColour{
+	grid-area: colourSelected;
+	padding: 5px;
+}
+
 
 	.wrapper {
 		display: grid;
 		height: 100%;
-		grid-template-columns: 70px 230px  minmax(500px, 1fr);
+		grid-template-columns: 70px 230px 100px  minmax(500px, 1fr);
 		grid-template-rows: 35px minmax(500px, 1fr) 160px;
 		grid-template-areas:
-               "header header header"
-				"sidebar content content"
-                "colourP colourP options";
+               "header header header header"
+				"sidebar content content content"
+                "colourP colourP colourSelected options";
 		background-color: #fff;
 		color: #444;
 	}
