@@ -28,6 +28,7 @@ function setup() {
 	toolbox.addTool(new Eraser());
 	toolbox.addTool(new StampTool());
 	toolbox.addTool(new ColorPick());
+	toolbox.addTool(new ZoomTool());
 	background(255);
 
 	lineWeight = new LineWeigth();
@@ -47,4 +48,10 @@ function draw() {
 	}
 	helpers.update();
 	// console.log(mouseX+" | "+mouseY);
+}
+
+function mouseWheel(event){
+	if (toolbox.selectedTool.hasOwnProperty("wheel")) {
+		toolbox.selectedTool.wheel(event);
+	} 
 }
