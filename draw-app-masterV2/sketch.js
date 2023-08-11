@@ -29,6 +29,7 @@ function setup() {
 	toolbox.addTool(new StampTool());
 	toolbox.addTool(new ColorPick());
 	toolbox.addTool(new ZoomTool());
+	toolbox.addTool(new EditableShape());
 	background(255);
 
 	lineWeight = new LineWeigth();

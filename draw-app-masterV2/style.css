@@ -26,6 +26,8 @@ html, body {
 	max-height: 50px;
 	max-width: 50px;
 	padding:5px;
+	background-color: #fff;
+	margin-bottom: 5px;
 }
 
 .sideBarItem img{

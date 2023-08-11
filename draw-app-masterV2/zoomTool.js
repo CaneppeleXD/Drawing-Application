@@ -34,27 +34,34 @@ function ZoomTool() {
 
         if (e > 0) { //zoom in
             for (var i = 0; i < e; i++) {
-                if (tow >= 20 * img.width) return; //max zoom
+                if (tow >= 20 * img.width){
+                    tow = 20 * img.width;
+                    toh = 20 * img.height;
+                    break;
+                }
                 tox -= zoom * (mouseX - tox);
                 toy -= zoom * (mouseY - toy);
                 tow *= zoom + 1;
                 toh *= zoom + 1;
-                
             }
-            currentZoom+=100/20;
         }
 
         if (e < 0) { //zoom out
             for (var i = 0; i < -e; i++) {
-                if (tow <= img.width) return; //min zoom
+                if (tow <= img.width) {
+                    tow = img.width;
+                    toh = img.height;
+                    break;
+                }
                 tox += zoom / (zoom + 1) * (mouseX - tox);
                 toy += zoom / (zoom + 1) * (mouseY - toy);
                 toh /= zoom + 1;
                 tow /= zoom + 1;
             }
-            currentZoom-=100/20;
         }
 
+        currentZoom=map(tow,img.width,img.width*20,0,100);
+        
         if(tox > 0) tox = 0;
         if(toy > 0) toy = 0;
         if(tox+tow<width) tox = width-tow;
@@ -80,4 +87,6 @@ function ZoomTool() {
     }
 
     //change zoom function made by: "mimimimimi" in https://editor.p5js.org/mimimimimi/sketches/SOkckqY_r
+
+    //TO DO: change the pixel density of the canvas and allow to zoom out after changing to other tool
 }
