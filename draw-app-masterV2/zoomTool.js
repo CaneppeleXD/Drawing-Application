@@ -3,18 +3,15 @@ function ZoomTool() {
     this.name = "ZoomTool";
 
     var img;
+    var imageToZoom
     var w, h, tow, toh;
     var x, y, tox, toy;
     var zoom = .001; //zoom step per mouse tick
     var currentZoom = 0;
+    x = tox = 0;
+    y = toy = 0;
 
     this.draw = function () {
-        if (mouseIsPressed && helpers.insideCanvas) {
-
-        }
-        else {
-            previouslyPressed = false;
-        }
 
         x = lerp(x, tox, .1);
         y = lerp(y, toy, .1);
@@ -23,7 +20,7 @@ function ZoomTool() {
 
         // image(img, x - w / 2, y - h / 2, w, h);
         
-        image(img, x, y, w, h);
+        image(imageToZoom, x, y, w, h);
     }
 
     this.wheel = function(event){
@@ -70,16 +67,20 @@ function ZoomTool() {
     }
 
     this.populateOptions = function () {
-        select(".toolOptions").html("<span for='zoom'>Zoom:</span><span id='currentZoom'>0%</span>");
+        select(".toolOptions").html("<span for='zoom'>Zoom:</span><span id='currentZoom'>"+currentZoom+"%</span>");
 
+        if (img==null){
+            img = get();
+            w = tow = img.width;
+            h = toh = img.height;
+        }
+
+        imageToZoom = createGraphics(w,h);
+        imageToZoom.image(img,0,0,w,h);
         img = get();
+        imageToZoom.image(img,0-x,0-y,img.width,img.height);
 
         background(255,255,255);
-
-        w = tow = img.width;
-        h = toh = img.height;
-        x = tox = 0;
-        y = toy = 0;
     }
 
     this.unselectTool = function () {
@@ -88,5 +89,5 @@ function ZoomTool() {
 
     //change zoom function made by: "mimimimimi" in https://editor.p5js.org/mimimimimi/sketches/SOkckqY_r
 
-    //TO DO: change the pixel density of the canvas and allow to zoom out after changing to other tool
+    //TO DO: change the pixel density of the canvas and wait for the image to load before executing the other functions
 }
