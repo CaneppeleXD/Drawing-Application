@@ -231,7 +231,6 @@ function StampTool() {
     }
 
     this.populateOptions = function () {
-        var html = "";
         for (var i = 0; i < stamps.length; i++) {
 
             select(".toolOptions").html("<button class='stamp' id='" + stamps[i] + "'>" + stamps[i] + "</button>", true);

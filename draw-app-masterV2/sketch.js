@@ -48,7 +48,6 @@ function draw() {
 		alert("it doesn't look like your tool has a draw method!");
 	}
 	helpers.update();
-	// console.log(mouseX+" | "+mouseY);
 }
 
 function mouseWheel(event){

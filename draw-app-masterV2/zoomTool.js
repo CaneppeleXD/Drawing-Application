@@ -10,6 +10,7 @@ function ZoomTool() {
     var currentZoom = 0;
     x = tox = 0;
     y = toy = 0;
+    var zoomAmount = 10;
 
     this.draw = function () {
 
@@ -17,8 +18,6 @@ function ZoomTool() {
         y = lerp(y, toy, .1);
         w = lerp(w, tow, .1);
         h = lerp(h, toh, .1);
-
-        // image(img, x - w / 2, y - h / 2, w, h);
         
         image(imageToZoom, x, y, w, h);
     }
@@ -31,9 +30,9 @@ function ZoomTool() {
 
         if (e > 0) { //zoom in
             for (var i = 0; i < e; i++) {
-                if (tow >= 20 * img.width){
-                    tow = 20 * img.width;
-                    toh = 20 * img.height;
+                if (tow >= zoomAmount * img.width){
+                    tow = zoomAmount * img.width;
+                    toh = zoomAmount * img.height;
                     break;
                 }
                 tox -= zoom * (mouseX - tox);
@@ -57,17 +56,18 @@ function ZoomTool() {
             }
         }
 
-        currentZoom=map(tow,img.width,img.width*20,0,100);
+        currentZoom=map(tow,img.width,img.width*zoomAmount,0,100);
         
         if(tox > 0) tox = 0;
         if(toy > 0) toy = 0;
         if(tox+tow<width) tox = width-tow;
         if(toy+toh<height) toy = height-toh;
-        select("#currentZoom").html(currentZoom+"%");
+        select("#currentZoom").html(currentZoom.toPrecision(3)+"%");
+
     }
 
     this.populateOptions = function () {
-        select(".toolOptions").html("<span for='zoom'>Zoom:</span><span id='currentZoom'>"+currentZoom+"%</span>");
+        select(".toolOptions").html("<span for='zoom'>Zoom:</span><span id='currentZoom'>"+currentZoom.toPrecision(3)+"%</span>");
 
         if (img==null){
             img = get();

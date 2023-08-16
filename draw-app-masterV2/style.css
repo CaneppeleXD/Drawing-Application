@@ -80,6 +80,10 @@ html, body {
   font-size: 150%;
 }
 
+.editable_shape {
+	background-color: #fff;
+}
+
 .header {
   background-color: #999;
 }
