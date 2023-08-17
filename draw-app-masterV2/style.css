@@ -81,7 +81,17 @@ html, body {
 }
 
 .editable_shape {
+	box-sizing: border-box;
 	background-color: #fff;
+	height: 50px;
+	width: 50px;
+	float: left;
+	margin-right: 5px;
+}
+
+.editable_shape_img {
+	height: 100%;
+	width: 100%;
 }
 
 .header {

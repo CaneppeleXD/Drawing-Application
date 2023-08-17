@@ -81,6 +81,7 @@ function ZoomTool() {
         imageToZoom.image(img,0-x,0-y,img.width,img.height);
 
         background(255,255,255);
+
     }
 
     this.unselectTool = function () {
@@ -89,5 +90,5 @@ function ZoomTool() {
 
     //change zoom function made by: "mimimimimi" in https://editor.p5js.org/mimimimimi/sketches/SOkckqY_r
 
-    //TO DO: change the pixel density of the canvas and wait for the image to load before executing the other functions
+    //TO DO: change the pixel density of the canvas and wait for the image to load before executing the other functions //it might be able to scale the things drawns with scale and translate
 }

@@ -16,7 +16,7 @@ function FreeShape(){
         }
 
         for(var i = 0; i < points.length; i++){
-            if (dist(points[i].pointX,points[i].pointY,x,y) < 20){
+            if (dist(points[i].pointX,points[i].pointY,x,y) < 5){
                 x = points[i].pointX;
                 y = points[i].pointY;
                 readyToEndShape = true;
