@@ -2,7 +2,7 @@ function ColorPick() {
     this.icon = "assets/colorpick.jpg";
     this.name = "ColorPick";
 
-    var currentColor = [255, 255, 255];
+    var currentColour = [255, 255, 255];
 
     var previouslyPressed = false;
 
@@ -10,10 +10,10 @@ function ColorPick() {
         if (mouseIsPressed && helpers.insideCanvas) {
             if (!previouslyPressed) {
                 loadPixels();
-                currentColor = getColorInPosition(mouseX, mouseY);
-                changeCurrentColorViewer();
-                stroke(currentColor);
-                fill(currentColor);
+                currentColour = getColorInPosition(mouseX, mouseY);
+                changecurrentColourViewer();
+                stroke(currentColour);
+                fill(currentColour);
                 previouslyPressed = true;
             }
         }
@@ -35,8 +35,9 @@ function ColorPick() {
         
     }
 
-    function changeCurrentColorViewer() {
-        select("#displaySelectedColour").style("background-color", "rgb(" + currentColor.join(",") + ")");
+    function changecurrentColourViewer() {
+        select("#displaySelectedColour").style("background-color", "rgb(" + currentColour.join(",") + ")");
+        helpers.currentColour = currentColour;
     }
 
     this.unselectTool = function () {

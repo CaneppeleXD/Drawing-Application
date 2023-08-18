@@ -1,6 +1,6 @@
-function RectShape() {
-    this.name = "rectShape";
-    this.icon = "assets/shapes/rectShape.jpg";
+function EllipseShape() {
+    this.name = "ellipseShape";
+    this.icon = "assets/shapes/EllipseShape.jpg";
     this.firstDrawing = true;
     this.posX;
     this.posY;
@@ -14,7 +14,7 @@ function RectShape() {
                 this.firstDrawing = false;
             }
             updatePixels();
-            rect(this.posX,this.posY,x-this.posX,y-this.posY);
+            ellipse(this.posX,this.posY,(x-this.posX)*2,(y-this.posY)*2);
         }
         else {
             loadPixels();

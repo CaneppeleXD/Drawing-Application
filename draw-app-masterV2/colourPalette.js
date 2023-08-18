@@ -21,6 +21,7 @@ function ColourPalette() {
 
 		//set the selected colour and fill and stroke
 		self.selectedColour = c;
+		helpers.currentColour = c;
 		fill(c);
 		stroke(c);
 

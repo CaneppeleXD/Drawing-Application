@@ -1,6 +1,6 @@
-function RectShape() {
-    this.name = "rectShape";
-    this.icon = "assets/shapes/rectShape.jpg";
+function TriangleShape() {
+    this.name = "TriangleShape";
+    this.icon = "assets/shapes/triangleShape.jpg";
     this.firstDrawing = true;
     this.posX;
     this.posY;
@@ -14,7 +14,13 @@ function RectShape() {
                 this.firstDrawing = false;
             }
             updatePixels();
-            rect(this.posX,this.posY,x-this.posX,y-this.posY);
+            var x1 = this.posX + (x - this.posX)/2;
+            var y1 = this.posY;
+            var x2 = this.posX;
+            var y2 = y;
+            var x3 = x;
+            var y3 = y;
+            triangle(x1,y1,x2,y2,x3,y3);
         }
         else {
             loadPixels();

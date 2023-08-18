@@ -1,6 +1,6 @@
-function RectShape() {
-    this.name = "rectShape";
-    this.icon = "assets/shapes/rectShape.jpg";
+function SquareShape() {
+    this.name = "SquareShape";
+    this.icon = "assets/shapes/SquareShape.jpg";
     this.firstDrawing = true;
     this.posX;
     this.posY;
@@ -14,7 +14,9 @@ function RectShape() {
                 this.firstDrawing = false;
             }
             updatePixels();
-            rect(this.posX,this.posY,x-this.posX,y-this.posY);
+            var size = helpers.getEqualSizes(x-this.posX,y-this.posY);
+
+            rect(this.posX,this.posY,size.resX,size.resY);
         }
         else {
             loadPixels();

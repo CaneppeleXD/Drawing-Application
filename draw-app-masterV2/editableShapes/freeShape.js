@@ -8,7 +8,7 @@ function FreeShape(){
     var readyToNewPoint = true;
     var end = false;
     var readyToEndShape = false;
-    this.draw = function(previousX,previousY,x,y){
+    this.draw = function(previousX,previousY,x,y,fill){
         clicked = previousX != -1;
         
         if(points.length == 0){
@@ -40,7 +40,7 @@ function FreeShape(){
 
         updatePixels();
         if(points.length > 0){
-            drawShape(x,y);
+            drawShape(x,y,fill);
         }
 
         if(end){
@@ -50,8 +50,8 @@ function FreeShape(){
         }
     }
     
-    function drawShape(x,y){
-        noFill();
+    function drawShape(x,y,fill){
+        helpers.changeFill(end && fill);
         beginShape();
         points.forEach(point => {
             vertex(point.pointX,point.pointY);
