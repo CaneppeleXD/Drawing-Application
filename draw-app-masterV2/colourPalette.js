@@ -59,6 +59,13 @@ function ColourPalette() {
 		currentColour.class("colourSwatches");
 		currentColour.style("border", "2px solid blue");
 		select(".currentColour").child(currentColour);
+
+		var colourWheel = createDiv();
+		colourWheel.style("background-image", "url(assets/colourWheel.jpg)");
+		colourWheel.style("background-size", "100% 100%");
+		colourWheel.id("colorWheel");
+		colourWheel.class("colourSwatches");
+		select(".currentColour").child(colourWheel);
 	};
 	//call the loadColours function now it is declared
 	this.loadColours();
