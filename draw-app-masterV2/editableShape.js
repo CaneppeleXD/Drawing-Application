@@ -11,6 +11,11 @@ function EditableShape() {
 
     var fill = true;
 
+    var savedPosX;
+    var savedPosY;
+    var lastX;
+    var lastY;
+
     this.draw = function () {
         if (mouseIsPressed && helpers.insideCanvas) {
             if (previousMouseX == -1) {
@@ -27,7 +32,19 @@ function EditableShape() {
             previousMouseY = -1;
         }
 
+        if(selectedShape.editingPosition){
+            selectedShape.posX = savedPosX + mouseX - lastX;
+            selectedShape.posY = savedPosY + mouseY - lastY;
+        }
+        else{
+            savedPosX = selectedShape.posX;
+            savedPosY = selectedShape.posY;
+            lastX = mouseX;
+            lastY = mouseY;
+        }
+
         selectedShape.draw(previousMouseX,previousMouseY,mouseX,mouseY,fill);
+
     }
 
     function selectShape(name){

@@ -5,8 +5,6 @@ function RectShape() {
     this.editingPosition = false;
     this.posX;
     this.posY;
-    var lastX;
-    var lastY;
 
     this.draw = function(previousX, previousY, x, y,fill){
         if (previousX != -1 && !this.editingPosition) {
@@ -19,21 +17,21 @@ function RectShape() {
             updatePixels();
             lastX = x;
             lastY = y;
-            rect(this.posX,this.posY,x-this.posX,y-this.posY);
+            this.drawShape(x,y);
         }
         else if(!this.firstDrawing){
             this.editingPosition = true;
             if (mouseIsPressed) this.firstDrawing = true;
-            var xdiff = x - lastX;
-            var ydiff = y - lastY;
-            var newX = this.posX+xdiff;
-            var newY = this.posY+ydiff;
             updatePixels();
-            rect(newX,newY,x-newX,y-newY);
+            this.drawShape(x,y);
         }
         else {
             loadPixels();
             this.editingPosition = false;
         }
     }
+
+    this.drawShape = function(x,y){
+        rect(this.posX,this.posY,x-this.posX,y-this.posY);
+    } 
 }
