@@ -74,7 +74,8 @@ function ZoomTool() {
             w = tow = img.width;
             h = toh = img.height;
         }
-
+        //combine the two images, the previous one and the new one, this way, the parts that are not on screen after zooming in, will
+        // still be accessible after zooming out
         imageToZoom = createGraphics(w,h);
         imageToZoom.image(img,0,0,w,h);
         img = get();
