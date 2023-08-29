@@ -4,16 +4,16 @@ var toolbox = null;
 var colourP = null;
 var helpers = null;
 var lineWeight = null;
+var stopDrawing = false;
 this.c = null;
 
 function setup() {
-
-	//create a canvas to fill the content div from index.html
+	// Sets Pixel Density to 1 so everything in the project works as expected
 	pixelDensity(1);
+	//create a canvas to fill the content div from index.html
 	canvasContainer = select('#content');
 	c = createCanvas(canvasContainer.size().width, canvasContainer.size().height);
 	c.parent("content");
-	console.log(c.width, c.height);
 	//create helper functions and the colour palette
 	helpers = new HelperFunctions();
 	colourP = new ColourPalette();
@@ -28,7 +28,7 @@ function setup() {
 	toolbox.addTool(new mirrorDrawTool());
 	toolbox.addTool(new Eraser());
 	toolbox.addTool(new StampTool());
-	toolbox.addTool(new ColorPick());
+	toolbox.addTool(new ColorPick(c, c.width, c.height, c.width, c.height));
 	toolbox.addTool(new ZoomTool());
 	toolbox.addTool(new EditableShape());
 	background(255);
@@ -44,11 +44,13 @@ function draw() {
 	//if an object contains a particular method or property
 	//if there isn't a draw method the app will alert the user
 	if (toolbox.selectedTool.hasOwnProperty("draw")) {
-		toolbox.selectedTool.draw();
+		if(!stopDrawing)
+			toolbox.selectedTool.draw();
 	} else {
 		alert("it doesn't look like your tool has a draw method!");
 	}
 	helpers.update();
+	colourP.update();
 }
 
 function mouseWheel(event){

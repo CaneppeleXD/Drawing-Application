@@ -8,11 +8,17 @@ function ColourPalette() {
 	//make the start colour be black
 	this.selectedColour = "black";
 
+	this.colourWheelActive = false;
+
+	var colourWheelImage = loadImage("assets/colourWheel.jpg");
+
 	var self = this;
 
-	var colourClick = function() {
+	var firstIteration = true;
+
+	var colourClick = function () {
 		//remove the old border
-		
+
 		var current = select("#" + self.selectedColour + "Swatch");
 		current.style("border", "0");
 
@@ -30,7 +36,7 @@ function ColourPalette() {
 	}
 
 	//load in the colours
-	this.loadColours = function() {
+	this.loadColours = function () {
 		//set the fill and stroke properties to be black at the start of the programme
 		//running
 		fill(this.colours[0]);
@@ -65,8 +71,52 @@ function ColourPalette() {
 		colourWheel.style("background-size", "100% 100%");
 		colourWheel.id("colorWheel");
 		colourWheel.class("colourSwatches");
+		colourWheel.mouseClicked(() => this.colourWheelActive = true);
 		select(".currentColour").child(colourWheel);
 	};
 	//call the loadColours function now it is declared
 	this.loadColours();
+
+	function insideColourWheelImage(w, h) {
+		return mouseX > 0 && mouseX < w && mouseY > 0 && mouseY < h;
+	}
+
+	var colourPickWheel;
+
+	this.colourWheel = function () {
+		if (this.colourWheelActive) {
+			var w = colourWheelImage.width * 2;
+			var h = colourWheelImage.height * 2;
+			var end = false;
+
+			if (mouseIsPressed && !insideColourWheelImage(w, h) && !firstIteration) {
+				updatePixels();
+				this.colourWheelActive = false;
+				firstIteration = true;
+				stopDrawing = false;
+				end = true;
+			}
+			
+			if (!end) {
+				if (firstIteration) {
+					stopDrawing = true
+
+					if (!mouseIsPressed) {
+						colourPickWheel = new ColorPick(colourWheelImage, colourWheelImage.width, colourWheelImage.height, w, h);
+						loadPixels();
+						firstIteration = false;
+					}
+				}
+				else {
+					image(colourWheelImage, 0, 0, w, h);
+
+					colourPickWheel.draw();
+				}
+			}
+		}
+	}
+
+	this.update = function () {
+		this.colourWheel();
+	}
 }
