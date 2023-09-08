@@ -49,6 +49,7 @@ function draw() {
 	} else {
 		alert("it doesn't look like your tool has a draw method!");
 	}
+	//Calls the update methods of the helperFunctions and colourPallete so the app's features works as desired
 	helpers.update();
 	colourP.update();
 }

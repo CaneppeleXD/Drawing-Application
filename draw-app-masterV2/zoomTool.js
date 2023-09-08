@@ -14,11 +14,13 @@ function ZoomTool() {
 
     this.draw = function () {
 
+        //Makes a nice effect of gradiant increase and decrease of the zoom
         x = lerp(x, tox, .1);
         y = lerp(y, toy, .1);
         w = lerp(w, tow, .1);
         h = lerp(h, toh, .1);
         
+        //Prints the image zoomed in or out
         image(imageToZoom, x, y, w, h);
     }
 
@@ -56,18 +58,21 @@ function ZoomTool() {
             }
         }
 
+        //Maps the zoom amount between 0 and 100 for better user understanding of how much of the total zoom they have used
         currentZoom=map(tow,img.width,img.width*zoomAmount,0,100);
         
+        //Guarantees that the image zoomed stays in the canvas area
         if(tox > 0) tox = 0;
         if(toy > 0) toy = 0;
         if(tox+tow<width) tox = width-tow;
         if(toy+toh<height) toy = height-toh;
+
         select("#currentZoom").html(currentZoom.toPrecision(3)+"%");
 
     }
 
     this.populateOptions = function () {
-        select(".toolOptions").html("<span for='zoom'>Zoom:</span><span id='currentZoom'>"+currentZoom.toPrecision(3)+"%</span>");
+        select(".toolOptions").html("<span for='zoom'>Zoom:</span><span id='currentZoom'>"+currentZoom.toPrecision(3)+"%</span><br><span>Use Scroll to Zoom In and Out</span>");
 
         if (img==null){
             img = get();
@@ -90,6 +95,4 @@ function ZoomTool() {
     }
 
     //change zoom function made by: "mimimimimi" in https://editor.p5js.org/mimimimimi/sketches/SOkckqY_r
-
-    //TO DO: change the pixel density of the canvas and wait for the image to load before executing the other functions //it might be able to scale the things drawns with scale and translate
 }

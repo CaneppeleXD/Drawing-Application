@@ -57,7 +57,7 @@ function ColourPalette() {
 			colourSwatch.mouseClicked(colourClick)
 		}
 
-
+		//Creates a little square to show the current color selected
 		select(".currentColour").html("<span>Selected Colour:</span>");
 		var currentColour = createDiv();
 		currentColour.style("background-color", "black");
@@ -66,6 +66,7 @@ function ColourPalette() {
 		currentColour.style("border", "2px solid blue");
 		select(".currentColour").child(currentColour);
 
+		//Creates a icon to display the color wheel
 		var colourWheel = createDiv();
 		colourWheel.style("background-image", "url(assets/colourWheel.jpg)");
 		colourWheel.style("background-size", "100% 100%");
@@ -83,12 +84,15 @@ function ColourPalette() {
 
 	var colourPickWheel;
 
+	//Function to control the colour wheel behaviour
 	this.colourWheel = function () {
+		//Checks if the colour wheel is activated
 		if (this.colourWheelActive) {
 			var w = colourWheelImage.width * 2;
 			var h = colourWheelImage.height * 2;
 			var end = false;
 
+			//If the user has clicked outside the colour wheel and it's not the first the function has being called, the colour wheel is disabled 
 			if (mouseIsPressed && !insideColourWheelImage(w, h) && !firstIteration) {
 				updatePixels();
 				this.colourWheelActive = false;
@@ -97,10 +101,14 @@ function ColourPalette() {
 				end = true;
 			}
 			
+			//Checks if the drawn of the color wheel has ended
 			if (!end) {
+				//First calls of the function efore the mouse has being released, sets the things to enable the colour wheel to be drawn safely
 				if (firstIteration) {
+					//Disables the user to use tools to drawn into the canvas
 					stopDrawing = true
 
+					//When mouse is realeased will create a color pick to enables the user to select a colour in the colour wheel
 					if (!mouseIsPressed) {
 						colourPickWheel = new ColorPick(colourWheelImage, colourWheelImage.width, colourWheelImage.height, w, h);
 						loadPixels();
@@ -108,8 +116,10 @@ function ColourPalette() {
 					}
 				}
 				else {
+					//Draws the colour wheel
 					image(colourWheelImage, 0, 0, w, h);
 
+					//Calls the colour pick tool to check if the user has clicked the image and get the desired colour
 					colourPickWheel.draw();
 				}
 			}

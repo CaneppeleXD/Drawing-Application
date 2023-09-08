@@ -22,9 +22,12 @@ function mirrorDrawTool() {
 	var previousOppositeMouseX = -1;
 	var previousOppositeMouseY = -1;
 
+	//Arrays to control the axis when the button both is clicked, each index controls a quadrant of the screen
+	//1 = Top Left; 2 = Top Right; 3 = Botton Left; 4 = Botton Right
 	var axis = [{ x: -1, y: -1 }, { x: -1, y: -1 }, { x: -1, y: -1 }, { x: -1, y: -1 }];
 	var previousAxis = [{ x: -1, y: -1 }, { x: -1, y: -1 }, { x: -1, y: -1 }, { x: -1, y: -1 }];
 
+	//Functon to calculate the opposite X and Y
 	this.calculateBothOpposite = function (posX, posY) {
 		var lineOfSymmetryX = width / 2;
 		var lineOfSymmetryY = height / 2;
@@ -32,6 +35,7 @@ function mirrorDrawTool() {
 		var newX = 0;
 		var newY = 0;
 
+		//Works the same way of calculateOpposite function, however here it calculates for both X and Y
 		if (posX < lineOfSymmetryX) {
 			newX = lineOfSymmetryX + (lineOfSymmetryX - posX);
 		}
