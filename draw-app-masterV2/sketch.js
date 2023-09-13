@@ -31,6 +31,7 @@ function setup() {
 	toolbox.addTool(new ColorPick(c, c.width, c.height, c.width, c.height));
 	toolbox.addTool(new ZoomTool());
 	toolbox.addTool(new EditableShape());
+	toolbox.addTool(new InvertColour());
 	background(255);
 
 	lineWeight = new LineWeigth();

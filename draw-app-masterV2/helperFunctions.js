@@ -6,6 +6,7 @@ function HelperFunctions() {
 
 	//Sets the default color for when de object it created
 	this.currentColour = "black";
+	this.fill = true;
 
 	//event handler for the clear button event. Clears the screen
 
@@ -35,6 +36,7 @@ function HelperFunctions() {
 	//Changes the fill for the current color of it if the parameter is true, it it's not, it turns the fill off
 	this.changeFill = function (value) {
 		value ? fill(this.currentColour) : noFill();
+		this.fill = value;
 	}
 
 	//Returns the largest absolute value

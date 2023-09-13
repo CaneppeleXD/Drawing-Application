@@ -34,8 +34,8 @@ function Eraser() {
 
     this.unselectTool = function(){
         //Turns settings back to what they were before selecting the eraser tool
-        fill(colourP.selectedColour);
-        stroke(colourP.selectedColour);
+        if(helpers.fill) fill(helpers.currentColour);
+        stroke(helpers.currentColour);
         select(".toolOptions").html("");
     }
 
